@@ -30,6 +30,7 @@ public class WorldTooltips {
 	public static final String GUIID = "worldtooltipsgui";
 	public static int colorBackground, overrideOutlineColor, maxDistance;
 	public static float alpha;
+    public static boolean disableBackground;
 	public static boolean hideModName, overrideOutline;
 	private static boolean enabled = false;
 	public RenderEvent events;
@@ -75,6 +76,8 @@ public class WorldTooltips {
 		if (event.modID.equals(MODID)) {
 			if (event.configID.equals(GUIID)) {
 				boolean tmp = enabled;
+                disableBackground = config.get("Appearance", "Disable Background", true,
+                    "Disable rendering the tooltip background").getBoolean();
 				enabled = config.get("Appearance", "Enable Mod", true, "Enable rendering the tooltips.").getBoolean();
 				if (tmp != enabled) {
 					if (enabled)
@@ -89,7 +92,9 @@ public class WorldTooltips {
 	}
 
 	private void syncConfig() {
-		hideModName = config.getBoolean("Hide Mod Name", "Appearance", false, "Hide mod names on tooltips.");
+        disableBackground = config.getBoolean("Disable Background",
+            "Appearance", false, "Disable rendering the tooltip background");
+        hideModName = config.getBoolean("Hide Mod Name", "Appearance", false, "Hide mod names on tooltips.");
 		maxDistance = config.getInt("Maximum Draw Distance", "Appearance", 8, 2, 64, "Set the maximum distance that tooltips should be displayed from.");
 		overrideOutline = config.getBoolean("Override Outline", "Appearance", false, "If enabled outline color will be manually set instead of default behavior.");
 		alpha = config.getFloat("Transparency", "Appearance", 0.8F, 0.0F, 1.0F, "Set the opacity for the tooltips; 0 being completely invisible and 1 being completely opaque.");
