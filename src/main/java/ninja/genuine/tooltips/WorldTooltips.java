@@ -92,7 +92,7 @@ public class WorldTooltips {
 		hideModName = config.getBoolean("Hide Mod Name", "Appearance", false, "Hide mod names on tooltips.");
 		maxDistance = config.getInt("Maximum Draw Distance", "Appearance", 8, 2, 64, "Set the maximum distance that tooltips should be displayed from.");
 		overrideOutline = config.getBoolean("Override Outline", "Appearance", false, "If enabled outline color will be manually set instead of default behavior.");
-		alpha = config.getFloat("Transparency", "Appearance", 0.8F, 0.0F, 1.0F, "Set the opacity for the tooltips; 0 being completely invisible and 1 being completely opaque.");
+		alpha = config.getFloat("Transparency", "Appearance", 0.0F, 0.0F, 1.0F, "Set the opacity for the tooltips; 0 being completely invisible and 1 being completely opaque.");
 		try {
 			colorBackground = Integer.decode(config.get("Appearance", "Background Color", "0x100010", DESC, Type.COLOR).getString());
 		} catch (NumberFormatException e) {
